@@ -67,7 +67,7 @@ export const TicketBooking = () => {
 									role="button"
 									aria-pressed={selected}
 									aria-disabled={booked}
-								>
+								> 
 									{`${String.fromCharCode(65 + col)}${row}`}
 								</div>
 							)
