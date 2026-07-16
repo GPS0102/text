@@ -1,0 +1,17 @@
+section	name	current_version	target_version	action	status	evidence	notes
+dependencies	h8k-components	^1.0.0		replace-with-owned-ui	replaced	Replaced h8k package/custom-element usage with local AppHeader and app-ui.css.	
+dependencies	h8k-design	^1.0.16		replace-with-owned-ui	replaced	Replaced h8k package/custom-element usage with local AppHeader and app-ui.css.	
+dependencies	react	^19.1.0	19.2.7	latest-stable	updated	Verified with npm registry lookup on 2026-06-07 and migrated package.json.	
+dependencies	react-dom	^19.1.0	19.2.7	latest-stable	updated	Verified with npm registry lookup on 2026-06-07 and migrated package.json.	
+dependencies	react-scripts	^5.0.1		replace-cra-with-vite	removed	Replaced CRA/react-scripts with Vite config and scripts.	
+devDependencies	@testing-library/dom	^10.4.0	10.4.1	latest-stable	updated	Verified with npm registry lookup on 2026-06-07 and migrated package.json.	
+devDependencies	@testing-library/jest-dom	^5.16.5	6.9.1	replace-legacy-tests-with-vitest-happy-dom	updated	Replaced legacy test tooling with Vitest and happy-dom.	
+devDependencies	@testing-library/react	^16.3.0	16.3.2	latest-stable	updated	Verified with npm registry lookup on 2026-06-07 and migrated package.json.	
+devDependencies	@testing-library/user-event	^14.4.3	14.6.1	latest-stable	updated	Verified with npm registry lookup on 2026-06-07 and migrated package.json.	
+devDependencies	@vitejs/plugin-react		6.0.2	added-modern-tooling	updated	Added as required modern React/Vite/Vitest tooling; version verified with npm registry on 2026-06-07.	
+devDependencies	happy-dom		20.10.2	added-modern-tooling	updated	Added as required modern React/Vite/Vitest tooling; version verified with npm registry on 2026-06-07.	
+devDependencies	jest-junit	^16.0.0		replace-legacy-tests-with-vitest-happy-dom	removed	Replaced legacy test tooling with Vitest and happy-dom.	
+devDependencies	save	^2.9.0		removed-obsolete	removed	Removed during Bun/Vite/Vitest migration after source/config scan.	
+devDependencies	vite		8.0.16	added-modern-tooling	updated	Added as required modern React/Vite/Vitest tooling; version verified with npm registry on 2026-06-07.	
+devDependencies	vitest		4.1.8	added-modern-tooling	updated	Added as required modern React/Vite/Vitest tooling; version verified with npm registry on 2026-06-07.	
+devDependencies	web-vitals	^1.1.2		removed-obsolete	removed	Removed during Bun/Vite/Vitest migration after source/config scan.	
