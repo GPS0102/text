@@ -4,78 +4,79 @@ import "./TicketBooking.css"
 export const TicketBooking = () => {
 	const rows = 10
 	const cols = 10
-	const [boookedSeats, setBookedSeats] = React.useState([])
+	const [bookedSeats, setBookedSeats] = React.useState([])
 	const [selectedSeats, setSelectedSeats] = React.useState([])
 
-	//gENERATE GRID COLUMNS
+	// generate grid columns ("auto" repeated `cols` times)
+	const seatRowsTimeAuto = Array(cols).fill('auto').join(' ')
 
-	configuration:"auto auto auto..."(10, times)
-	let seatRowsTimeAuto ="";
-	for (let i =0; i <cols; i++){
-    seatRowsTimeAuto += "";
+	// handle clicking a seat item
+	const handleSeatClick = (seatKey) => {
+		// if the seat is already booked, do nothing (disabled)
+		if (bookedSeats.includes(seatKey)) return
 
-}
+		// toggle selection
+		if (selectedSeats.includes(seatKey)) {
+			setSelectedSeats(selectedSeats.filter(id => id !== seatKey))
+		} else {
+			setSelectedSeats([...selectedSeats, seatKey])
+		}
+	}
 
-for (let i =0; i <cols; i++){
+	// Handle "book seats"
+	const handleBookSeats = () => {
+		if (selectedSeats.length === 0) {
+			alert("please select at least one seat.")
+			return
+		}
+		// append current selection to booked seats
+		setBookedSeats([...bookedSeats, ...selectedSeats])
+		setSelectedSeats([])
+	}
 
-	seatRowsTimeAuto += "auto";
-}
-seatRowsTimeAuto = seatRowsTimeAuto.trim();
-//handle Clicking a seat item
+	// Clear only the current selection
+	const handleClearSelection = () => {
+		setSelectedSeats([])
+	}
 
-const handleSeatClick = (seatKey) => {
-	//if the seat is already bookded,do nothing (disabled)
-if(boookedSeats.includes(seatKey)){ return;}
+	// handle "reset bookings"
+	const handleResetBookings = () => {
+		setBookedSeats([])
+		setSelectedSeats([])
+	}
 
-//toggel logic
-
-if (selectedSeats.includes(setKey)){
-	setSelectedSeats(selectedSeats.filter(id=> id !== seatKey));
-}else{setSelectedSeats([...selectedSeats,seatKey])};
-
-} 
-};
-
-//Handle "book Seats"
-
-const handleBookSets =() => { if (selectedSeats.length===0){
-	alert("please select at least one seat.");
-	return;
-}
-// append Curent Selection 
-
-setBookingSeats([...boookedSeats, ...selectedSeats]);
-setSelectedSeats([]);
-
-};
-
-//handel "resetBookings"
-
-const handleResetBookings = () => {
-	setBookedSeats([]);
-	setSelectedSeats([]);
-};
-
-
-
-	
 	return (
 		<div className="mt-50 layout-column justify-content-center align-items-center">
 			<div className="display-flex">
-			<button data-testid="book-seats">Book Seats</button>
-				<button data-testid="clear-selection" className="danger">Clear</button>
+				<button data-testid="book-seats" onClick={handleBookSeats}>Book Seats</button>
+				<button data-testid="clear-selection" className="danger" onClick={handleClearSelection}>Clear</button>
 			</div>
 			<div style={{ display: 'grid', gridTemplateColumns: `${seatRowsTimeAuto}` }}>
 				{Array(rows).fill(0).map((_, row) => (
 					<div key={row} style={row === 4 ? { marginRight: '40px' } : null}>{
-						Array(cols).fill(0).map((_, col) =>
-							<div data-testid={`${row}${col}`} className="seat" key={`${row}${col}`}>{`${String.fromCharCode(65 + col)}${row}`}</div>
-						)
+						Array(cols).fill(0).map((_, col) => {
+							const seatKey = `${row}${col}`
+							const booked = bookedSeats.includes(seatKey)
+							const selected = selectedSeats.includes(seatKey)
+							return (
+								<div
+									data-testid={`${row}${col}`}
+									className={`seat ${booked ? 'booked' : selected ? 'selected' : ''}`}
+									key={seatKey}
+									onClick={() => handleSeatClick(seatKey)}
+									role="button"
+									aria-pressed={selected}
+									aria-disabled={booked}
+								>
+									{`${String.fromCharCode(65 + col)}${row}`}
+								</div>
+							)
+						})
 					}</div>
 				))}
 			</div>
 			<br />
-			<button data-testid="reset">Reset Bookings</button>
+			<button data-testid="reset" onClick={handleResetBookings}>Reset Bookings</button>
 		</div>
 	)
 }
