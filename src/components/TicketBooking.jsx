@@ -7,10 +7,58 @@ export const TicketBooking = () => {
 	const [boookedSeats, setBookedSeats] = React.useState([])
 	const [selectedSeats, setSelectedSeats] = React.useState([])
 
-	let seatRowsTimeAuto = ""
-	for (let i = 0; i <= cols; i++) {
-		seatRowsTimeAuto += 'auto '
-	}
+	//gENERATE GRID COLUMNS
+
+	configuration:"auto auto auto..."(10, times)
+	let seatRowsTimeAuto ="";
+	for (let i =0; i <cols; i++){
+    seatRowsTimeAuto += "";
+
+}
+
+for (let i =0; i <cols; i++){
+
+	seatRowsTimeAuto += "auto";
+}
+seatRowsTimeAuto = seatRowsTimeAuto.trim();
+//handle Clicking a seat item
+
+const handleSeatClick = (seatKey) => {
+	//if the seat is already bookded,do nothing (disabled)
+if(boookedSeats.includes(seatKey)){ return;}
+
+//toggel logic
+
+if (selectedSeats.includes(setKey)){
+	setSelectedSeats(selectedSeats.filter(id=> id !== seatKey));
+}else{setSelectedSeats([...selectedSeats,seatKey])};
+
+} 
+};
+
+//Handle "book Seats"
+
+const handleBookSets =() => { if (selectedSeats.length===0){
+	alert("please select at least one seat.");
+	return;
+}
+// append Curent Selection 
+
+setBookingSeats([...boookedSeats, ...selectedSeats]);
+setSelectedSeats([]);
+
+};
+
+//handel "resetBookings"
+
+const handleResetBookings = () => {
+	setBookedSeats([]);
+	setSelectedSeats([]);
+};
+
+
+
+	
 	return (
 		<div className="mt-50 layout-column justify-content-center align-items-center">
 			<div className="display-flex">
